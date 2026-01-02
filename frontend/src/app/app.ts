@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { UsersService } from './services/users.service';
 import {User} from '../app/models/user.model'
@@ -13,8 +14,13 @@ import {User} from '../app/models/user.model'
 export class App {
   protected readonly title = signal('frontend');
   users: User[] = [];
+  private platformId = inject(PLATFORM_ID);
+  
   constructor (private usersService: UsersService) {
-    this.loadUsers();
+    // Only load users in browser, not on server
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadUsers();
+    }
   }
 
   loadUsers()
