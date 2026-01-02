@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.zerolatency.backend.model.users;
 import com.zerolatency.backend.repo.usersRepo;
+import java.util.List;
 
 @Service
 public class usersService {
@@ -13,5 +14,17 @@ public class usersService {
 
     public users findByUsername(String username) {
         return userRepo.findByUsername(username);
+    }
+
+    public List<users> getAllUsers() {
+        return userRepo.findAll();
+    }
+
+    public users login(String username, String password) {
+        users user = userRepo.findByUsername(username);
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        }
+        return null;
     }
 }
