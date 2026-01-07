@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zerolatency.backend.dto.authResponse;
 import com.zerolatency.backend.dto.loginRequest;
 import com.zerolatency.backend.dto.usernameRequest;
-import com.zerolatency.backend.model.users;
+import com.zerolatency.backend.model.Users;
 import com.zerolatency.backend.service.usersService;
 import java.util.List;
 import java.util.UUID;
@@ -25,23 +25,23 @@ public class usersController {
     private usersService userService;
 
     @GetMapping
-    public users findByUsername(@RequestParam String username) {
+    public Users findByUsername(@RequestParam String username) {
         return userService.findByUsername(username);
     }
 
     @PostMapping
-    public users findByUsernameFromBody(@RequestBody usernameRequest user) {
+    public Users findByUsernameFromBody(@RequestBody usernameRequest user) {
         return userService.findByUsername(user.getUsername());
     }
 
     @GetMapping("/dashboard")
-    public List<users> getDashboard() {
+    public List<Users> getDashboard() {
         return userService.getAllUsers();
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody loginRequest request) {
-        users user = userService.login(request.getUsername(), request.getPassword());
+        Users user = userService.login(request.getUsername(), request.getPassword());
         if (user != null) {
             // Generate a simple token (in production, use JWT)
             String token = UUID.randomUUID().toString();

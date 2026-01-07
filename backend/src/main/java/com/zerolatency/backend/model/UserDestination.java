@@ -1,34 +1,40 @@
 package com.zerolatency.backend.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
-public class user_website {
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "user_destination")
+public class UserDestination {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long web_id;
+    @Column (name = "dest_id")
+    private Long destId;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false, unique = true)
-    private users user;
+    private Users user;
 
-    private String github;
-    private String linkedin;
-    private String portfolio;
-    private String twitter;
-    private String facebook;
-    private String instagram;
-
+    private String kindergarten;
+    @Column(name = "primary_school")
+    private String primarySchool;
+    @Column(name = "middle_school")
+    private String middleSchool;
+    @Column(name = "high_school")
+    private String highSchool;
+    @Column(name = "college_university")
+    private String collegeUniversity;
 }

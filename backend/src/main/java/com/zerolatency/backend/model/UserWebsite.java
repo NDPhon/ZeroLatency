@@ -6,27 +6,31 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class user_destination {
+@Setter
+@Getter
+@Table(name = "user_website")
+public class UserWebsite {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long dest_id;
+    private Long web_id;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false, unique = true)
-    private users user;
+    private Users user;
 
-    private String kindergarten;
-    private String primary_school;
-    private String high_school;
-    private String college_university;
+    private String github;
+    private String linkedin;
+    private String portfolio;
+    private String twitter;
+    private String facebook;
+    private String instagram;
 
 }

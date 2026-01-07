@@ -2,10 +2,10 @@ package com.zerolatency.backend.repo;
 
 import org.springframework.stereotype.Repository;
 
-import com.zerolatency.backend.model.users;
+import com.zerolatency.backend.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public interface usersRepo extends JpaRepository<users, Long> {
-    public users findByUsername(String username);
+public interface usersRepo extends JpaRepository<Users, Long> {
+    public Users findByUsername(String username);
 }
